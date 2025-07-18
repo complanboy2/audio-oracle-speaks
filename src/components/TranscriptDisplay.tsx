@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TranscriptDisplayProps {
   audioId: number;
@@ -12,18 +13,19 @@ interface TranscriptDisplayProps {
 
 export const TranscriptDisplay: React.FC<TranscriptDisplayProps> = ({ audioId, transcript }) => {
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(transcript);
       toast({
-        title: "Copied!",
-        description: "Transcript copied to clipboard",
+        title: t('copyToClipboard'),
+        description: t('transcriptCopied'),
       });
     } catch (err) {
       toast({
         title: "Error",
-        description: "Failed to copy transcript",
+        description: t('copyError'),
         variant: "destructive",
       });
     }
@@ -34,27 +36,27 @@ export const TranscriptDisplay: React.FC<TranscriptDisplayProps> = ({ audioId, t
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-slate-600" />
-            <span className="text-slate-700">Transcript</span>
+            <FileText className="w-5 h-5 text-muted-foreground" />
+            <span className="text-foreground">{t('transcript')}</span>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={copyToClipboard}
-            className="text-slate-500 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <Copy className="w-4 h-4" />
           </Button>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
-          <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+        <div className="bg-muted rounded-lg p-4 border">
+          <p className="text-foreground leading-relaxed whitespace-pre-wrap">
             {transcript}
           </p>
         </div>
-        <p className="text-xs text-slate-500 mt-2">
-          AI-generated transcript for audio #{audioId}
+        <p className="text-xs text-muted-foreground mt-2">
+          AI-generated transcript for {t('audioFile')}{audioId}
         </p>
       </CardContent>
     </Card>

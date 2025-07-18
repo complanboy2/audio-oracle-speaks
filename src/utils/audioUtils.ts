@@ -19,14 +19,16 @@ export const getAudioFile = (audioId: number): AudioFile => {
   return audio;
 };
 
-export const getTranscript = (audioId: number): string => {
+export const getTranscript = (audioId: number, language: 'en' | 'te' = 'en'): string => {
   const transcript = transcripts[audioId];
   
   if (!transcript) {
-    return "Transcript not available for this audio file.";
+    return language === 'te' 
+      ? "ఈ ఆడియో ఫైల్‌కు ట్రాన్స్‌క్రిప్ట్ అందుబాటులో లేదు."
+      : "Transcript not available for this audio file.";
   }
   
-  return transcript;
+  return transcript[language] || transcript['en'];
 };
 
 export const getTotalAudioFiles = (): number => {

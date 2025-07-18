@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, Volume2, Download } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AudioPlayerProps {
   audioId: number;
@@ -14,6 +15,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioId, audioUrl }) =
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -70,14 +72,14 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioId, audioUrl }) =
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Volume2 className="w-5 h-5 text-blue-600" />
-            <span className="text-slate-700">Audio #{audioId}</span>
+            <Volume2 className="w-5 h-5 text-primary" />
+            <span className="text-foreground">{t('audioFile')}{audioId}</span>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => window.open(audioUrl, '_blank')}
-            className="text-slate-500 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <Download className="w-4 h-4" />
           </Button>
@@ -91,29 +93,29 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioId, audioUrl }) =
           <Button
             onClick={togglePlayPause}
             size="lg"
-            className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200"
+            className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200"
           >
             {isPlaying ? (
-              <Pause className="w-5 h-5 text-white" />
+              <Pause className="w-5 h-5 text-primary-foreground" />
             ) : (
-              <Play className="w-5 h-5 text-white ml-0.5" />
+              <Play className="w-5 h-5 text-primary-foreground ml-0.5" />
             )}
           </Button>
           
           <div className="flex-1 space-y-2">
             {/* Progress Bar */}
             <div 
-              className="h-2 bg-slate-200 rounded-full cursor-pointer relative overflow-hidden"
+              className="h-2 bg-muted rounded-full cursor-pointer relative overflow-hidden"
               onClick={handleSeek}
             >
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-150"
+                className="h-full bg-primary rounded-full transition-all duration-150"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
             
             {/* Time Display */}
-            <div className="flex justify-between text-sm text-slate-500">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>
