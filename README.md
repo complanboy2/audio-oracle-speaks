@@ -1,73 +1,156 @@
-# Welcome to your Lovable project
 
-## Project info
+# Audio Discovery Web Application
 
-**URL**: https://lovable.dev/projects/ecbe217f-47da-41b3-aa71-83ddbb04c753
+A clean, minimal web application for hosting and serving a collection of pre-recorded audio files. Each audio file is uniquely associated with a natural number ID and can be discovered through text input hashing.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Text-to-Audio Mapping**: Enter any text to discover unique audio content through cryptographic hashing
+- **Audio Player**: Custom-built audio player with play/pause, seek, and download functionality
+- **Transcript Display**: AI-generated transcripts for each audio file
+- **Responsive Design**: Modern, clean interface that works on all devices
+- **Hash-based Selection**: Combines user input with timestamp for deterministic audio selection
 
-**Use Lovable**
+## How It Works
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ecbe217f-47da-41b3-aa71-83ddbb04c753) and start prompting.
+1. User enters text in the input field
+2. Text is combined with current timestamp and hashed
+3. Hash value determines which audio file to play (hash % totalAudioFiles)
+4. Selected audio plays with corresponding transcript displayed
 
-Changes made via Lovable will be committed automatically to this repo.
+## Project Structure
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── AudioPlayer.tsx       # Custom audio player component
+│   └── TranscriptDisplay.tsx # Transcript display component
+├── data/
+│   └── audioData.ts         # Audio files and transcripts data
+├── utils/
+│   ├── audioUtils.ts        # Audio file management utilities
+│   └── hashUtils.ts         # Text hashing functionality
+└── pages/
+    └── Index.tsx            # Main application page
 ```
 
-**Edit a file directly in GitHub**
+## Adding Your Audio Files
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Step 1: Prepare Your Audio Files
 
-**Use GitHub Codespaces**
+1. Create a `public/audio/` directory in your project
+2. Place your audio files (MP3, WAV, etc.) in this directory
+3. Name them sequentially: `audio1.mp3`, `audio2.mp3`, etc.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Step 2: Update Audio Data
 
-## What technologies are used for this project?
+Edit `src/data/audioData.ts`:
 
-This project is built with:
+```typescript
+export const audioFiles: AudioFile[] = [
+  {
+    id: 1,
+    filename: "audio1.mp3",
+    url: "/audio/audio1.mp3",
+    title: "Your Audio Title"
+  },
+  // Add more audio files...
+];
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Step 3: Add Transcripts
 
-## How can I deploy this project?
+Update the transcripts object in the same file:
 
-Simply open [Lovable](https://lovable.dev/projects/ecbe217f-47da-41b3-aa71-83ddbb04c753) and click on Share -> Publish.
+```typescript
+export const transcripts: Record<number, string> = {
+  1: "Your AI-generated transcript for audio 1...",
+  2: "Your AI-generated transcript for audio 2...",
+  // Add more transcripts...
+};
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment Instructions
 
-Yes, you can!
+### Option 1: Vercel (Recommended)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run `vercel` in your project directory
+3. Follow the prompts to deploy
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Option 2: Netlify
+
+1. Build the project: `npm run build`
+2. Drag and drop the `dist` folder to [Netlify Drop](https://app.netlify.com/drop)
+
+### Option 3: GitHub Pages
+
+1. Install gh-pages: `npm install --save-dev gh-pages`
+2. Add to package.json scripts: `"deploy": "gh-pages -d dist"`
+3. Run: `npm run build && npm run deploy`
+
+## Cloud Storage Integration
+
+For larger audio collections, consider using cloud storage:
+
+### AWS S3
+```typescript
+const audioUrl = `https://your-bucket.s3.region.amazonaws.com/audio/audio${audioId}.mp3`;
+```
+
+### Google Cloud Storage
+```typescript
+const audioUrl = `https://storage.googleapis.com/your-bucket/audio/audio${audioId}.mp3`;
+```
+
+### Cloudinary
+```typescript
+const audioUrl = `https://res.cloudinary.com/your-cloud/video/upload/audio${audioId}.mp3`;
+```
+
+## Generating Transcripts
+
+Use AI transcription services to generate transcripts:
+
+1. **OpenAI Whisper API**
+2. **Google Speech-to-Text**
+3. **Assembly AI**
+4. **Rev.ai**
+
+Example with Whisper:
+```bash
+whisper audio1.mp3 --output_format txt
+```
+
+## Sample Data
+
+The application comes with 20 sample audio entries and corresponding transcripts. Replace these with your actual audio files and transcripts.
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Technologies Used
+
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Shadcn/ui components
+- Lucide React icons
+
+## Security Note
+
+The current implementation uses a simple hash function for demonstration. For production use, consider implementing the secure SHA-256 version using the Web Crypto API (see `hashTextToAudioIdSecure` in `hashUtils.ts`).
+
+## License
+
+MIT License - feel free to modify and use for your projects.
