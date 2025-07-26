@@ -6,9 +6,9 @@ This project is configured for automatic deployment to GitHub Pages.
 
 ### Setup Instructions
 
-1. **Create GitHub Repository**
+1. **Create GitHub Repository Named "sadguru-vaakku"**
    ```bash
-   # Create a new repository on GitHub
+   # Create a new repository on GitHub with EXACT name: sadguru-vaakku
    # Then clone it locally or push existing code
    git init
    git add .
@@ -21,13 +21,18 @@ This project is configured for automatic deployment to GitHub Pages.
 2. **Enable GitHub Pages**
    - Go to your repository on GitHub
    - Navigate to Settings → Pages
-   - Select "GitHub Actions" as the source
-   - The deployment workflow will automatically trigger
+   - Under "Source", select "GitHub Actions"
+   - The deployment workflow will automatically trigger on push to main
 
 3. **Add Audio Files**
    - Create audio files and place them in `public/audio/` directory
    - Name them: `sample1.mp3`, `sample2.mp3`, etc.
+   - Ensure audio files are committed to Git (check .gitignore doesn't exclude them)
    - Commit and push the changes
+
+4. **IMPORTANT: Repository Name Must Match**
+   - Repository MUST be named exactly "sadguru-vaakku"
+   - If different name, update basename in src/main.tsx and base in vite.config.ts
 
 ### Audio File Management
 
@@ -36,9 +41,10 @@ This project is configured for automatic deployment to GitHub Pages.
 - Files will be served from `http://localhost:8080/audio/filename.mp3`
 
 #### Production (GitHub Pages)
-- Files will be served from `https://yourusername.github.io/repository-name/audio/filename.mp3`
+- Files will be served from `https://yourusername.github.io/sadguru-vaakku/audio/filename.mp3`
 - Maximum file size per repository: 1GB
 - Individual file size limit: 100MB
+- Audio files are served relative to the base path
 
 #### Adding New Audio Files
 
@@ -52,7 +58,7 @@ This project is configured for automatic deployment to GitHub Pages.
    {
      id: 21,
      filename: "sample21.mp3",
-     url: "/audio/sample21.mp3",
+     url: "./audio/sample21.mp3",
      title: "Your Audio Title"
    }
    ```
@@ -68,7 +74,14 @@ This project is configured for automatic deployment to GitHub Pages.
 ### Deployment Status
 
 Your app will be available at:
-`https://yourusername.github.io/repository-name/`
+`https://yourusername.github.io/sadguru-vaakku/`
+
+### Troubleshooting GitHub Pages Deployment
+
+1. **Routing Issues**: Ensure repository name matches basename in main.tsx
+2. **Audio Not Loading**: Check audio files are in public/audio/ and committed to Git
+3. **404 Errors**: Verify base path in vite.config.ts matches repository name
+4. **Build Failures**: Check GitHub Actions tab for detailed error logs
 
 ### Alternative Hosting Options
 

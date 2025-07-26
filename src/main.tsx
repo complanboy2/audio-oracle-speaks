@@ -5,7 +5,7 @@ import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/audio-oracle-speaks">
+    <BrowserRouter basename="/sadguru-vaakku">
       <App />
     </BrowserRouter>
   </React.StrictMode>

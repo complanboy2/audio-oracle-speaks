@@ -1,132 +1,40 @@
 
-# Audio Discovery Web Application
+# Sadguru Vaakku v2.0 🙏
 
-A clean, minimal web application for hosting and serving a collection of pre-recorded audio files. Each audio file is uniquely associated with a natural number ID and can be discovered through text input hashing.
+A beautiful Telugu/English bilingual audio discovery web application featuring spiritual guidance and peaceful sounds.
 
-## Features
+## ✨ Features
 
-- **Text-to-Audio Mapping**: Enter any text to discover unique audio content through cryptographic hashing
-- **Audio Player**: Custom-built audio player with play/pause, seek, and download functionality
-- **Transcript Display**: AI-generated transcripts for each audio file
-- **Responsive Design**: Modern, clean interface that works on all devices
-- **Hash-based Selection**: Combines user input with timestamp for deterministic audio selection
+- **Bilingual Support**: Complete Telugu/English language toggle
+- **Audio Discovery**: Text-to-audio mapping using secure hashing
+- **Spiritual Theme**: Sai Baba integration with peaceful lime green design
+- **20 Audio Files**: Pre-configured with sample audio and bilingual transcripts
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **GitHub Pages Ready**: Automatic deployment with CI/CD
 
-## How It Works
+## 🚀 Quick Start
 
-1. User enters text in the input field
-2. Text is combined with current timestamp and hashed
-3. Hash value determines which audio file to play (hash % totalAudioFiles)
-4. Selected audio plays with corresponding transcript displayed
+### Option 1: Direct Deployment to GitHub Pages
 
-## Project Structure
+1. **Fork or Clone this repository**
+   ```bash
+   git clone https://github.com/yourusername/sadguru-vaakku.git
+   cd sadguru-vaakku
+   ```
 
-```
-src/
-├── components/
-│   ├── AudioPlayer.tsx       # Custom audio player component
-│   └── TranscriptDisplay.tsx # Transcript display component
-├── data/
-│   └── audioData.ts         # Audio files and transcripts data
-├── utils/
-│   ├── audioUtils.ts        # Audio file management utilities
-│   └── hashUtils.ts         # Text hashing functionality
-└── pages/
-    └── Index.tsx            # Main application page
-```
+2. **Create GitHub Repository named "sadguru-vaakku"**
+   - Repository name MUST be exactly "sadguru-vaakku"
+   - Push your code to the repository
 
-## Adding Your Audio Files
+3. **Enable GitHub Pages**
+   - Go to repository Settings → Pages
+   - Select "GitHub Actions" as source
+   - Automatic deployment will start
 
-### Step 1: Prepare Your Audio Files
+4. **Access your app**
+   - URL: `https://yourusername.github.io/sadguru-vaakku/`
 
-1. Create a `public/audio/` directory in your project
-2. Place your audio files (MP3, WAV, etc.) in this directory
-3. Name them sequentially: `audio1.mp3`, `audio2.mp3`, etc.
-
-### Step 2: Update Audio Data
-
-Edit `src/data/audioData.ts`:
-
-```typescript
-export const audioFiles: AudioFile[] = [
-  {
-    id: 1,
-    filename: "audio1.mp3",
-    url: "/audio/audio1.mp3",
-    title: "Your Audio Title"
-  },
-  // Add more audio files...
-];
-```
-
-### Step 3: Add Transcripts
-
-Update the transcripts object in the same file:
-
-```typescript
-export const transcripts: Record<number, string> = {
-  1: "Your AI-generated transcript for audio 1...",
-  2: "Your AI-generated transcript for audio 2...",
-  // Add more transcripts...
-};
-```
-
-## Deployment Instructions
-
-### Option 1: Vercel (Recommended)
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in your project directory
-3. Follow the prompts to deploy
-
-### Option 2: Netlify
-
-1. Build the project: `npm run build`
-2. Drag and drop the `dist` folder to [Netlify Drop](https://app.netlify.com/drop)
-
-### Option 3: GitHub Pages
-
-1. Install gh-pages: `npm install --save-dev gh-pages`
-2. Add to package.json scripts: `"deploy": "gh-pages -d dist"`
-3. Run: `npm run build && npm run deploy`
-
-## Cloud Storage Integration
-
-For larger audio collections, consider using cloud storage:
-
-### AWS S3
-```typescript
-const audioUrl = `https://your-bucket.s3.region.amazonaws.com/audio/audio${audioId}.mp3`;
-```
-
-### Google Cloud Storage
-```typescript
-const audioUrl = `https://storage.googleapis.com/your-bucket/audio/audio${audioId}.mp3`;
-```
-
-### Cloudinary
-```typescript
-const audioUrl = `https://res.cloudinary.com/your-cloud/video/upload/audio${audioId}.mp3`;
-```
-
-## Generating Transcripts
-
-Use AI transcription services to generate transcripts:
-
-1. **OpenAI Whisper API**
-2. **Google Speech-to-Text**
-3. **Assembly AI**
-4. **Rev.ai**
-
-Example with Whisper:
-```bash
-whisper audio1.mp3 --output_format txt
-```
-
-## Sample Data
-
-The application comes with 20 sample audio entries and corresponding transcripts. Replace these with your actual audio files and transcripts.
-
-## Development
+### Option 2: Local Development
 
 ```bash
 # Install dependencies
@@ -139,18 +47,142 @@ npm run dev
 npm run build
 ```
 
-## Technologies Used
+## 📁 Project Structure
 
-- React 18 with TypeScript
-- Vite for build tooling
-- Tailwind CSS for styling
-- Shadcn/ui components
-- Lucide React icons
+```
+src/
+├── components/
+│   ├── AudioPlayer.tsx      # Audio playback component
+│   ├── LanguageToggle.tsx   # Telugu/English toggle
+│   ├── TranscriptDisplay.tsx # Bilingual transcript display
+│   └── ui/                  # Shadcn UI components
+├── contexts/
+│   └── LanguageContext.tsx  # Language state management
+├── data/
+│   └── audioData.ts         # Audio files and transcripts
+├── pages/
+│   └── Index.tsx            # Main application page
+├── assets/
+│   ├── sai-baba-logo.jpg    # Spiritual logo
+│   └── peaceful-background.jpg # Background image
+└── utils/
+    ├── audioUtils.ts        # Audio helper functions
+    └── hashUtils.ts         # Text hashing for audio selection
+```
 
-## Security Note
+## 🎵 Adding Audio Files
 
-The current implementation uses a simple hash function for demonstration. For production use, consider implementing the secure SHA-256 version using the Web Crypto API (see `hashTextToAudioIdSecure` in `hashUtils.ts`).
+### Step 1: Add Audio File
+Place your audio file in `public/audio/` directory:
+```
+public/audio/sample21.mp3
+```
 
-## License
+### Step 2: Update Audio Data
+Add entry to `src/data/audioData.ts`:
+```typescript
+{
+  id: 21,
+  filename: "sample21.mp3",
+  url: "./audio/sample21.mp3",
+  title: "Your Audio Title"
+}
+```
 
-MIT License - feel free to modify and use for your projects.
+### Step 3: Add Bilingual Transcripts
+```typescript
+21: {
+  en: "English transcript here...",
+  te: "Telugu transcript here..."
+}
+```
+
+### Step 4: Commit and Deploy
+```bash
+git add .
+git commit -m "Add new audio file"
+git push origin main
+```
+
+## 🌐 Deployment Options
+
+### GitHub Pages (Recommended)
+- ✅ Free hosting
+- ✅ Automatic CI/CD
+- ✅ Custom domain support
+- ✅ 1GB repository limit
+
+### Alternative Platforms
+- **Vercel**: `vercel --prod`
+- **Netlify**: Upload `dist/` folder
+- **Firebase**: `firebase deploy`
+
+## 🎨 Customization
+
+### Colors and Theme
+Edit `src/index.css` for design tokens:
+```css
+:root {
+  --primary: 84 85% 35%;     /* Lime green */
+  --background: 0 0% 100%;   /* White */
+  /* ... more theme variables */
+}
+```
+
+### Logo and Branding
+Replace `src/assets/sai-baba-logo.jpg` with your logo
+
+### Language Content
+Update translations in `src/contexts/LanguageContext.tsx`
+
+## 🔧 Technical Details
+
+### Built With
+- **React 18** + TypeScript
+- **Vite** for fast development
+- **Tailwind CSS** for styling
+- **Shadcn/ui** for components
+- **React Router** for navigation
+
+### Audio Requirements
+- **Formats**: MP3, WAV, OGG
+- **Size limit**: 100MB per file
+- **Total limit**: 1GB for GitHub Pages
+
+### Browser Support
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers
+
+## 📝 License
+
+MIT License - feel free to use for personal or commercial projects.
+
+## 🙏 Credits
+
+- **Spiritual Inspiration**: Sadguru Sai Baba
+- **UI Components**: [Shadcn/ui](https://ui.shadcn.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+## 🐛 Troubleshooting
+
+### Audio Not Playing
+- Check audio files are in `public/audio/` directory
+- Verify files are committed to Git
+- Ensure file paths use `./audio/` prefix
+
+### Deployment Issues
+- Repository name must be "sadguru-vaakku"
+- Check GitHub Actions tab for build logs
+- Verify base path in `vite.config.ts`
+
+### Routing Problems
+- Ensure single BrowserRouter in `main.tsx`
+- Check basename matches repository name
+
+---
+
+**May this application bring peace and spiritual guidance to all users** 🕉️
+
+For support or questions, please open an issue on GitHub.
