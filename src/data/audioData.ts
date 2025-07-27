@@ -5,121 +5,121 @@ export const audioFiles: AudioFile[] = [
   {
     id: 1,
     filename: "sample1.mp3",
-    url: "./audio/sample1.mp3",
+    url: "/sadguru-vaakku/audio/sample1.mp3",
     title: "Bell Ringing"
   },
   {
     id: 2,
     filename: "sample2.mp3", 
-    url: "./audio/sample2.mp3",
+    url: "/sadguru-vaakku/audio/sample2.mp3",
     title: "Buzzer Sound"
   },
   {
     id: 3,
     filename: "sample3.mp3",
-    url: "./audio/sample3.mp3",
+    url: "/sadguru-vaakku/audio/sample3.mp3",
     title: "Ocean Waves"
   },
   {
     id: 4,
     filename: "sample4.mp3",
-    url: "./audio/sample4.mp3", 
+    url: "/sadguru-vaakku/audio/sample4.mp3", 
     title: "Forest Ambience"
   },
   {
     id: 5,
     filename: "sample5.mp3",
-    url: "./audio/sample5.mp3",
+    url: "/sadguru-vaakku/audio/sample5.mp3",
     title: "Rain Sounds"
   },
   {
     id: 6,
     filename: "sample6.mp3",
-    url: "./audio/sample6.mp3",
+    url: "/sadguru-vaakku/audio/sample6.mp3",
     title: "City Traffic"
   },
   {
     id: 7,
     filename: "sample7.mp3",
-    url: "./audio/sample7.mp3",
+    url: "/sadguru-vaakku/audio/sample7.mp3",
     title: "Bird Songs"
   },
   {
     id: 8,
     filename: "sample8.mp3", 
-    url: "./audio/sample8.mp3",
+    url: "/sadguru-vaakku/audio/sample8.mp3",
     title: "Thunderstorm"
   },
   {
     id: 9,
     filename: "sample9.mp3",
-    url: "./audio/sample9.mp3",
+    url: "/sadguru-vaakku/audio/sample9.mp3",
     title: "Cafe Atmosphere"
   },
   {
     id: 10,
     filename: "sample10.mp3",
-    url: "./audio/sample10.mp3",
+    url: "/sadguru-vaakku/audio/sample10.mp3",
     title: "Wind Chimes"
   },
   {
     id: 11,
     filename: "sample11.mp3",
-    url: "./audio/sample11.mp3",
+    url: "/sadguru-vaakku/audio/sample11.mp3",
     title: "Fireplace Crackling"
   },
   {
     id: 12,
     filename: "sample12.mp3",
-    url: "./audio/sample12.mp3",
+    url: "/sadguru-vaakku/audio/sample12.mp3",
     title: "Water Fountain"
   },
   {
     id: 13,
     filename: "sample13.mp3",
-    url: "./audio/sample13.mp3",
+    url: "/sadguru-vaakku/audio/sample13.mp3",
     title: "Night Crickets"
   },
   {
     id: 14,
     filename: "sample14.mp3",
-    url: "./audio/sample14.mp3",
+    url: "/sadguru-vaakku/audio/sample14.mp3",
     title: "Keyboard Typing"
   },
   {
     id: 15,
     filename: "sample15.mp3",
-    url: "./audio/sample15.mp3",
+    url: "/sadguru-vaakku/audio/sample15.mp3",
     title: "Clock Ticking"
   },
   {
     id: 16,
     filename: "sample16.mp3",
-    url: "./audio/sample16.mp3",
+    url: "/sadguru-vaakku/audio/sample16.mp3",
     title: "Paper Rustling"
   },
   {
     id: 17,
     filename: "sample17.mp3",
-    url: "./audio/sample17.mp3",
+    url: "/sadguru-vaakku/audio/sample17.mp3",
     title: "Pen Clicking"
   },
   {
     id: 18,
     filename: "sample18.mp3",
-    url: "./audio/sample18.mp3",
+    url: "/sadguru-vaakku/audio/sample18.mp3",
     title: "Door Opening"
   },
   {
     id: 19,
     filename: "sample19.mp3",
-    url: "./audio/sample19.mp3",
+    url: "/sadguru-vaakku/audio/sample19.mp3",
     title: "Footsteps"
   },
   {
     id: 20,
     filename: "sample20.mp3",
-    url: "./audio/sample20.mp3",
+    url: "/sadguru-vaakku/audio/sample20.mp3",
     title: "Phone Ringing"
   }
 ];
